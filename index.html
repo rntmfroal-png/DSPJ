@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLB Character</title>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="scene" aria-label="GLB character viewer"></canvas>
+      <nav class="mode-tabs" aria-label="Main modes">
+        <button class="is-active" type="button">Free Play</button>
+        <button type="button">Rudiment</button>
+        <button type="button">Song Practice</button>
+      </nav>
+      <section class="panel" aria-label="HOSIMI status">
+        <div class="status" id="status">Loading character.glb</div>
+        <label class="character-select">
+          <span>Character</span>
+          <select id="characterSelect"></select>
+        </label>
+        <button id="toggleAnimButton" type="button">가만히 앉아 있기</button>
+        <div class="midi-status">
+          <span>MIDI</span>
+          <strong id="midiStatus">Checking</strong>
+        </div>
+        <button id="midiButton" type="button">Connect MIDI</button>
+        <div class="device-list" id="midiDevices">No MIDI devices</div>
+        <div class="midi-log" id="midiLog" aria-label="MIDI input log"></div>
+        <div class="pad-map" id="padMap" aria-label="Pad map editor"></div>
+        <div class="drum-hit" id="drumHit">No drum hit</div>
+        <label class="volume-control">
+          <span>Volume</span>
+          <input id="masterVolume" type="range" min="0" max="1" step="0.01" value="0.9" />
+        </label>
+        <label class="volume-control">
+          <span>BPM</span>
+          <input id="bpmInput" type="number" min="30" max="240" value="90" />
+        </label>
+        <button id="metronomeButton" type="button">Start Metronome</button>
+        <div class="view-buttons" aria-label="Camera view presets">
+          <button data-view="front" type="button">Front</button>
+          <button data-view="top" type="button">Top</button>
+          <button data-view="stage" type="button">Stage</button>
+        </div>
+        <button id="toggleRotationButton" type="button">화면 회전 정지</button>
+        <div class="drum-hit" id="latencyStatus">Latency: -- ms</div>
+        <div class="drum-hit" id="rigStatus">Rig: checking</div>
+        <label class="song-select">
+          <span>Song</span>
+          <select id="songSelect">
+            <option>Demo Pattern</option>
+            <option disabled>MIDI import coming later</option>
+          </select>
+        </label>
+        <label class="song-select">
+          <span>MIDI</span>
+          <input id="midiFileInput" type="file" accept=".mid,.midi,audio/midi" />
+        </label>
+        <textarea id="generatedNotes" class="generated-notes" aria-label="Generated notes"></textarea>
+        <button id="importedPatternButton" type="button">Start Imported</button>
+        <div class="settings-actions">
+          <button id="exportSettingsButton" type="button">Export Settings</button>
+          <label>
+            Import
+            <input id="importSettingsInput" type="file" accept="application/json,.json" />
+          </label>
+        </div>
+        <button id="tutorialButton" type="button">Tutorial</button>
+      </section>
+      <div class="tutorial" id="tutorialBox" hidden>
+        Connect MIDI, hit pads, then try Start Pattern or Start Rudiment.
+      </div>
+      <section class="game-panel" aria-label="Rhythm game">
+        <div class="game-hud">
+          <span>Score <strong id="scoreValue">0</strong></span>
+          <span>Combo <strong id="comboValue">0</strong></span>
+        </div>
+        <div class="lanes" id="gameLanes"></div>
+        <div class="hit-line"></div>
+        <div class="judgment" id="judgmentText">Ready</div>
+        <button id="gameButton" type="button">Start Pattern</button>
+        <div class="practice-controls">
+          <select id="rudimentSelect">
+            <option value="single">Single Stroke</option>
+            <option value="double">Double Stroke</option>
+            <option value="paradiddle">Paradiddle</option>
+          </select>
+          <select id="sectionSelect">
+            <option value="full">Full</option>
+            <option value="first">First Half</option>
+            <option value="second">Second Half</option>
+          </select>
+          <button id="rudimentButton" type="button">Start Rudiment</button>
+        </div>
+        <div class="result" id="resultText"></div>
+        <div class="result" id="analysisText"></div>
+        <div class="result" id="historyText"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

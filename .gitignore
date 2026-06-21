@@ -1,0 +1,4 @@
+node_modules/
+dist/
+start-site.log
+debug.txt
